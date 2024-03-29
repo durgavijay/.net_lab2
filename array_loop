@@ -1,0 +1,126 @@
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Task 1
+        int[] nums1 = { 10, 5, 3, 4 };
+        SwapEvenValues(nums1);
+        Console.WriteLine("Task 1:");
+        PrintArray(nums1);
+
+        int[] nums2 = { 100, 2, 3, 4, 5 };
+        SwapEvenValues(nums2);
+        Console.WriteLine("Task 1:");
+        PrintArray(nums2);
+
+        int[] nums3 = { 100, 2, 3, 45, 33, 8, 4, 54 };
+        SwapEvenValues(nums3);
+        Console.WriteLine("Task 1:");
+        PrintArray(nums3);
+
+        // Task 2
+        int[] nums4 = { 4, 100, 3, 4 };
+        int result1 = CalculateDistance(nums4);
+        Console.WriteLine($"Task 2: Result = {result1}");
+
+        int[] nums5 = { 5, 50, 50, 4, 5 };
+        int result2 = CalculateDistance(nums5);
+        Console.WriteLine($"Task 2: Result = {result2}");
+
+        int[] nums6 = { 5, 350, 350, 4, 350 };
+        int result3 = CalculateDistance(nums6);
+        Console.WriteLine($"Task 2: Result = {result3}");
+
+        int[] nums7 = { 10, 10, 10, 10, 10 };
+        int result4 = CalculateDistance(nums7);
+        Console.WriteLine($"Task 2: Result = {result4}");
+
+        // Task 3
+        int[,] matrix = {
+            { 2, 4, 3, 3 },
+            { 5, 7, 8, 5 },
+            { 2, 4, 3, 3 },
+            { 5, 7, 8, 5 }
+        };
+        UpdateMatrix(matrix);
+        Console.WriteLine("Task 3:");
+        PrintMatrix(matrix);
+    }
+
+    // Task 1: Swap Even Values
+    static void SwapEvenValues(int[] nums)
+    {
+        int start = 0;
+        int end = nums.Length - 1;
+        while (start < end)
+        {
+            if (nums[start] % 2 == 0 && nums[end] % 2 == 0)
+            {
+                int temp = nums[start];
+                nums[start] = nums[end];
+                nums[end] = temp;
+            }
+            start++;
+            end--;
+        }
+    }
+
+    // Task 2: Calculate Distance
+    static int CalculateDistance(int[] nums)
+    {
+        int max = int.MinValue;
+        int maxIndex = -1;
+        for (int i = 0; i < nums.Length; i++)
+        {
+            if (nums[i] > max)
+            {
+                max = nums[i];
+                maxIndex = i;
+            }
+        }
+        return Math.Abs(maxIndex - Array.LastIndexOf(nums, max));
+    }
+
+    // Task 3: Update Matrix
+    static void UpdateMatrix(int[,] matrix)
+    {
+        int n = matrix.GetLength(0);
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (j < i)
+                    matrix[i, j] = 0;
+                else if (j > i)
+                    matrix[i, j] = 1;
+            }
+        }
+    }
+
+    // Utility method to print array
+    static void PrintArray(int[] arr)
+    {
+        Console.Write("{ ");
+        foreach (int num in arr)
+        {
+            Console.Write(num + ", ");
+        }
+        Console.WriteLine("}");
+    }
+
+    // Utility method to print matrix
+    static void PrintMatrix(int[,] matrix)
+    {
+        int n = matrix.GetLength(0);
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                Console.Write(matrix[i, j] + " ");
+            }
+            Console.WriteLine();
+        }
+    }
+}
