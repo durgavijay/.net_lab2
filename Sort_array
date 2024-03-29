@@ -1,0 +1,103 @@
+using System;
+
+public enum SortOrder
+{
+    Ascending,
+    Descending
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Task 1
+        int[] array1 = { 5, 17, 24, 88, 33, 2 };
+        Console.WriteLine($"Task 1: IsSorted = {IsSorted(array1, SortOrder.Ascending)}");
+
+        // Task 2
+        int[] array2 = { 15, 10, 3 };
+        Transform(array2, SortOrder.Ascending);
+        PrintArray(array2);
+
+        int[] array3 = { 15, 10, 3 };
+        Transform(array3, SortOrder.Descending);
+        PrintArray(array3);
+
+        // Task 3
+        Console.WriteLine($"Task 3: MultArithmeticElements = {MultArithmeticElements(5, 3, 4)}");
+
+        // Task 4
+        Console.WriteLine($"Task 4: SumGeometricElements = {SumGeometricElements(100, 0.5, 20)}");
+    }
+
+    // Task 1: IsSorted
+    static bool IsSorted(int[] array, SortOrder order)
+    {
+        if (order == SortOrder.Ascending)
+        {
+            for (int i = 1; i < array.Length; i++)
+            {
+                if (array[i] < array[i - 1])
+                    return false;
+            }
+        }
+        else if (order == SortOrder.Descending)
+        {
+            for (int i = 1; i < array.Length; i++)
+            {
+                if (array[i] > array[i - 1])
+                    return false;
+            }
+        }
+        return true;
+    }
+
+    // Task 2: Transform
+    static void Transform(int[] array, SortOrder order)
+    {
+        if (IsSorted(array, order))
+        {
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] += i;
+            }
+        }
+    }
+
+    // Task 3: MultArithmeticElements
+    static double MultArithmeticElements(double a1, double t, int n)
+    {
+        double result = 1;
+        double current = a1;
+        for (int i = 0; i < n; i++)
+        {
+            result *= current;
+            current += t;
+        }
+        return result;
+    }
+
+    // Task 4: SumGeometricElements
+    static double SumGeometricElements(double a1, double t, double alim)
+    {
+        double sum = 0;
+        double current = a1;
+        while (current > alim)
+        {
+            sum += current;
+            current *= t;
+        }
+        return sum;
+    }
+
+    // Utility method to print array
+    static void PrintArray(int[] array)
+    {
+        Console.Write("{ ");
+        foreach (int num in array)
+        {
+            Console.Write(num + ", ");
+        }
+        Console.WriteLine("}");
+    }
+}
