@@ -1,0 +1,80 @@
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        // Task 1
+        int n1 = 1234;
+        int result1 = SumOfOddDigits(n1);
+        Console.WriteLine($"Task 1: For n = {n1}, result = {result1}");
+
+        int n2 = 246;
+        int result2 = SumOfOddDigits(n2);
+        Console.WriteLine($"Task 1: For n = {n2}, result = {result2}");
+
+        // Task 2
+        int n3 = 14;
+        int result3 = CountOnesInBinary(n3);
+        Console.WriteLine($"Task 2: For n = {n3}, result = {result3}");
+
+        int n4 = 128;
+        int result4 = CountOnesInBinary(n4);
+        Console.WriteLine($"Task 2: For n = {n4}, result = {result4}");
+
+        // Task 3
+        int n5 = 8;
+        int result5 = SumOfFibonacciNumbers(n5);
+        Console.WriteLine($"Task 3: For n = {n5}, result = {result5}");
+
+        int n6 = 11;
+        int result6 = SumOfFibonacciNumbers(n6);
+        Console.WriteLine($"Task 3: For n = {n6}, result = {result6}");
+    }
+
+    // Task 1: Sum of Odd Digits
+    static int SumOfOddDigits(int n)
+    {
+        int sum = 0;
+        while (n > 0)
+        {
+            int digit = n % 10;
+            if (digit % 2 != 0)
+            {
+                sum += digit;
+            }
+            n /= 10;
+        }
+        return sum;
+    }
+
+    // Task 2: Count Ones in Binary Representation
+    static int CountOnesInBinary(int n)
+    {
+        int count = 0;
+        while (n > 0)
+        {
+            if (n % 2 == 1)
+            {
+                count++;
+            }
+            n /= 2;
+        }
+        return count;
+    }
+
+    // Task 3: Sum of Fibonacci Numbers
+    static int SumOfFibonacciNumbers(int n)
+    {
+        int sum = 0;
+        int a = 0, b = 1;
+        for (int i = 0; i < n; i++)
+        {
+            sum += a;
+            int temp = a;
+            a = b;
+            b = temp + b;
+        }
+        return sum;
+    }
+}
